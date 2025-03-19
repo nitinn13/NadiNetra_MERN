@@ -80,70 +80,7 @@ export default function Settings() {
         </div>
       </div>
 
-      {/* Appearance */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="flex items-center gap-2 mb-4">
-          <Eye className="h-5 w-5 text-gray-700" />
-          <h2 className="text-xl font-semibold text-gray-900">Appearance</h2>
-        </div>
-        <div className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Theme</label>
-            <div className="flex gap-4">
-              <button
-                onClick={() => setTheme('light')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                  theme === 'light'
-                    ? 'bg-blue-100 text-blue-700'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                <Sun className="h-4 w-4" />
-                Light
-              </button>
-              <button
-                onClick={() => setTheme('dark')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                  theme === 'dark'
-                    ? 'bg-blue-100 text-blue-700'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                <Moon className="h-4 w-4" />
-                Dark
-              </button>
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-            >
-              <option value="en">English</option>
-              <option value="hi">Hindi</option>
-              <option value="bn">Bengali</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Alert Volume</label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={volume}
-              onChange={(e) => setVolume(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>0%</span>
-              <span>{volume}%</span>
-              <span>100%</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Privacy */}
       <div className="bg-white rounded-lg shadow-md p-6">
