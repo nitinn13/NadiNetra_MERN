@@ -25,14 +25,14 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
-            <Route path="/auth" element={<AuthPage />} />
+            {/* <Route path="/auth" element={<AuthPage />} /> */}
             <Route path="/contact" element={<ContactPage/>} />
             
             {/* Protected Routes - Dashboard */}
             <Route
               path="/dashboard/*"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
                     <Navbar />
                     <Sidebar />
@@ -51,7 +51,7 @@ function App() {
                       </div>
                     </main>
                   </div>
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
           </Routes>

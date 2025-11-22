@@ -5,10 +5,8 @@ export interface WaterBody {
   area: number;
   depth: number;
   quality: {
-    ph: number;
-    dissolvedOxygen: number;
+
     turbidity: number;
-    tds: number;
     tss: number;
     chlorophyll: number;
   };
@@ -26,8 +24,6 @@ export interface WaterQualityStats {
 
 export interface HistoricalData {
   date: string;
-  ph: number;
-  dissolvedOxygen: number;
   turbidity: number;
   pollutants: number;
   biodiversity: number;

@@ -8,11 +8,9 @@ export const waterBodies: WaterBody[] = [
     area: 34,
     depth: 8.5,
     quality: {
-      ph: 7.2,
-      dissolvedOxygen: 6.8,
+     
       turbidity: 12,
       tds: 450,
-      tss: 25,
       chlorophyll: 3.2
     },
     waterLevel: 85,
@@ -26,10 +24,7 @@ export const waterBodies: WaterBody[] = [
     area: 12,
     depth: 4.2,
     quality: {
-      ph: 7.5,
-      dissolvedOxygen: 7.2,
       turbidity: 8,
-      tds: 380,
       tss: 18,
       chlorophyll: 2.8
     },
@@ -44,10 +39,8 @@ export const waterBodies: WaterBody[] = [
     area: 26,
     depth: 6.8,
     quality: {
-      ph: 7.3,
-      dissolvedOxygen: 7.0,
+
       turbidity: 10,
-      tds: 420,
       tss: 22,
       chlorophyll: 3.0
     },
@@ -62,10 +55,8 @@ export const waterBodies: WaterBody[] = [
     area: 18,
     depth: 5.5,
     quality: {
-      ph: 7.4,
-      dissolvedOxygen: 6.9,
+
       turbidity: 9,
-      tds: 400,
       tss: 20,
       chlorophyll: 2.9
     },
@@ -80,10 +71,8 @@ export const waterBodies: WaterBody[] = [
     area: 42,
     depth: 7.2,
     quality: {
-      ph: 7.1,
-      dissolvedOxygen: 6.7,
+
       turbidity: 11,
-      tds: 470,
       tss: 28,
       chlorophyll: 3.5
     },

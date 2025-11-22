@@ -1,440 +1,215 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Droplets, Mail, Phone, MapPin, Send, Clock, MessageSquare, ChevronRight, ArrowRight, Check } from 'lucide-react';
+"use client";
+import React, { useState } from "react";
+import { 
+  Leaf, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  ArrowRight, 
+  Send,
+  MessageSquare,
+  Globe
+} from "lucide-react";
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+  NavbarLogo,
+  NavbarButton,
+} from "../components/ui/resizable-navbar"; // Adjust path if needed
 
-export default function ContactPage() {
-  const navigate = useNavigate();
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  const [formSubmitted, setFormSubmitted] = useState(false);
+const ContactPage = () => {
+  const [open, setOpen] = useState(false);
 
-  const handleChange = (e) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically handle the form submission to your backend
-    console.log('Form submitted:', formState);
-    setFormSubmitted(true);
-  };
+  const navItems = [
+    { name: "Home", link: "/" },
+    { name: "How it Works", link: "#" },
+    { name: "Contact", link: "/contact" },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-10 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
-              <Droplets className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">Nadinetra</span>
+    <div className="min-h-screen w-full bg-[#F3F0EA] font-sans flex flex-col">
+      
+      {/* ---------------- NAVBAR ---------------- */}
+      {/* Reusing your exact Navbar structure for consistency */}
+      <div className="pt-6 px-4 md:px-12 w-full z-50 relative">
+        <Navbar className="w-full max-w-7xl mx-auto">
+          <NavBody className="py-3 px-6 text-sm bg-white rounded-full shadow-sm flex justify-between items-center">
+            {/* Logo */}
+            <div className="flex items-center gap-2 text-green-700 font-bold text-xl">
+              <div className="p-1 border-2 border-green-600 rounded">
+                <Leaf size={16} fill="currentColor" />
+              </div>
+              Nadi Netra
             </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="/#features" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">Features</a>
-              <a href="/#about" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">About</a>
-              <a href="/#testimonials" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">Testimonials</a>
-              {/* <a href="/contact" className="text-blue-600 dark:text-blue-400">Contact</a> */}
-            </div>
-            <button
-              onClick={() => navigate('/auth')}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center space-x-1"
-            >
-              <span>Log In</span>
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </nav>
 
-      {/* Page Header */}
-      <div className="pt-20 pb-12 bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-800/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-          <div className="text-center">
-            <div className="inline-flex items-center bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
-              <span>Get in Touch</span>
+            {/* Desktop Nav */}
+            <div className="hidden md:block">
+              <NavItems items={navItems} className="text-sm font-medium text-gray-700 hover:text-green-700 transition-colors" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Contact Us
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-              Have questions about Nadinetra? We're here to help and would love to hear from you.
-            </p>
-          </div>
-        </div>
+
+            {/* Right Side Button */}
+            <div className="hidden md:flex items-center gap-3">
+              <NavbarButton className="text-sm px-5 py-2 rounded-full bg-black text-white hover:bg-gray-800" href="/dashboard">
+                Dashboard
+              </NavbarButton>
+            </div>
+
+            {/* Mobile Toggle */}
+            <div className="md:hidden">
+              <MobileNavToggle isOpen={open} onClick={() => setOpen(!open)} />
+            </div>
+          </NavBody>
+
+          <MobileNav>
+            <MobileNavMenu isOpen={open} onClose={() => setOpen(false)} className="bg-white rounded-2xl mt-2 p-4">
+              {navItems.map((item, idx) => (
+                <a key={idx} href={item.link} onClick={() => setOpen(false)} className="block text-gray-800 text-lg py-2 border-b border-gray-100">
+                  {item.name}
+                </a>
+              ))}
+            </MobileNavMenu>
+          </MobileNav>
+        </Navbar>
       </div>
 
-      {/* Contact Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contact Information */}
-          <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Contact Information
-              </h2>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-4">
-                    <Mail className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Email</h3>
-                    <p className="text-gray-600 dark:text-gray-300">info@nadinetra.org</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-4">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
-                    <p className="text-gray-600 dark:text-gray-300">+91 11 2345 6789</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-4">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Address</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      421 Tech Park<br />
-                      Sector 21, Delhi<br />
-                      India 110001
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-4">
-                    <Clock className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Office Hours</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      Monday - Friday: 9:00 AM - 6:00 PM<br />
-                      Saturday: 10:00 AM - 2:00 PM<br />
-                      Sunday: Closed
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-8">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Follow Us</h3>
-                <div className="flex space-x-4">
-                  <a href="#" className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400 transition-colors">
-                    <div className="w-5 h-5 bg-current opacity-70 rounded-sm"></div>
-                  </a>
-                  <a href="#" className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400 transition-colors">
-                    <div className="w-5 h-5 bg-current opacity-70 rounded-full"></div>
-                  </a>
-                  <a href="#" className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400 transition-colors">
-                    <div className="w-5 h-5 bg-current opacity-70 rounded"></div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* ---------------- MAIN CONTENT ---------------- */}
+      <main className="flex-grow flex items-center justify-center px-4 md:px-12 py-12">
+        <div className="w-full max-w-7xl mx-auto">
           
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-              {!formSubmitted ? (
-                <>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Send Us a Message
-                  </h2>
-                  <form onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                          Your Name
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formState.name}
-                          onChange={handleChange}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                          Your Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formState.email}
-                          onChange={handleChange}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                          required
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="mb-6">
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Subject
-                      </label>
-                      <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formState.subject}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                        required
-                      />
-                    </div>
-                    
-                    <div className="mb-6">
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formState.message}
-                        onChange={handleChange}
-                        rows="6"
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
-                        required
-                      ></textarea>
-                    </div>
-                    
-                    <div>
-                      <button
-                        type="submit"
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center"
-                      >
-                        <span>Send Message</span>
-                        <Send className="ml-2 h-4 w-4" />
-                      </button>
-                    </div>
-                  </form>
-                </>
-              ) : (
-                <div className="text-center py-12">
-                  <div className="inline-flex items-center justify-center p-4 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400 mb-6">
-                    <Check className="h-8 w-8" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            
+            {/* LEFT COLUMN: Contact Info Card (Dark Theme) */}
+            <div className="bg-[#0f2518] rounded-[3rem] p-10 md:p-14 text-white flex flex-col justify-between relative overflow-hidden min-h-[600px]">
+               
+               {/* Background Pattern Decoration */}
+               <div className="absolute top-0 right-0 w-64 h-64 bg-[#84cc16] rounded-full blur-[100px] opacity-20 -mr-16 -mt-16 pointer-events-none"></div>
+
+               <div>
+                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-8 border border-white/10">
+                    <MessageSquare size={14} className="text-[#84cc16]" /> 
+                    Contact Us
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    Message Sent Successfully!
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-300 mb-8">
-                    Thank you for contacting us. We will get back to you as soon as possible.
+                  
+                  <h1 className="text-5xl md:text-6xl font-medium leading-[1.1] mb-6">
+                    Let's discuss <br />
+                    <span className="text-[#84cc16]">Satellite Data.</span>
+                  </h1>
+                  
+                  <p className="text-gray-400 text-lg max-w-sm leading-relaxed">
+                    Have questions about HydroTransNet or Sentinel-2 integration? We are here to help you scale your water monitoring.
                   </p>
-                  <button
-                    onClick={() => setFormSubmitted(false)}
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                  >
-                    Send Another Message
+               </div>
+
+               {/* Contact Details Grid */}
+               <div className="space-y-8 mt-12 relative z-10">
+                  <div className="flex items-start gap-5 group cursor-pointer">
+                     <div className="w-14 h-14 rounded-full border border-gray-600 flex items-center justify-center group-hover:bg-[#84cc16] group-hover:text-[#0f2518] group-hover:border-[#84cc16] transition-all duration-300">
+                        <Mail size={24} />
+                     </div>
+                     <div>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Email Support</p>
+                        <p className="text-xl font-medium">hello@nadinetra.ai</p>
+                     </div>
+                  </div>
+
+                  <div className="flex items-start gap-5 group cursor-pointer">
+                     <div className="w-14 h-14 rounded-full border border-gray-600 flex items-center justify-center group-hover:bg-[#84cc16] group-hover:text-[#0f2518] group-hover:border-[#84cc16] transition-all duration-300">
+                        <Phone size={24} />
+                     </div>
+                     <div>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Call Us</p>
+                        <p className="text-xl font-medium">+91 (800) 123-4567</p>
+                     </div>
+                  </div>
+
+                  <div className="flex items-start gap-5 group cursor-pointer">
+                     <div className="w-14 h-14 rounded-full border border-gray-600 flex items-center justify-center group-hover:bg-[#84cc16] group-hover:text-[#0f2518] group-hover:border-[#84cc16] transition-all duration-300">
+                        <MapPin size={24} />
+                     </div>
+                     <div>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">HQ Location</p>
+                        <p className="text-xl font-medium">Tech Park, Bangalore, India</p>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+
+            {/* RIGHT COLUMN: Interactive Form (White Theme) */}
+            <div className="bg-white rounded-[3rem] p-10 md:p-14 shadow-xl flex flex-col justify-center">
+              
+              <h3 className="text-3xl font-bold text-[#0f2518] mb-8">Send a Message</h3>
+              
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   <div className="space-y-2">
+                      <label className="text-sm font-bold text-gray-500 uppercase tracking-wider ml-2">First Name</label>
+                      <input 
+                        type="text" 
+                        placeholder="John" 
+                        className="w-full bg-[#F3F0EA] rounded-2xl px-6 py-4 text-[#0f2518] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#84cc16] transition-all"
+                      />
+                   </div>
+                   <div className="space-y-2">
+                      <label className="text-sm font-bold text-gray-500 uppercase tracking-wider ml-2">Last Name</label>
+                      <input 
+                        type="text" 
+                        placeholder="Doe" 
+                        className="w-full bg-[#F3F0EA] rounded-2xl px-6 py-4 text-[#0f2518] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#84cc16] transition-all"
+                      />
+                   </div>
+                </div>
+
+                <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-500 uppercase tracking-wider ml-2">Email Address</label>
+                    <input 
+                      type="email" 
+                      placeholder="john@company.com" 
+                      className="w-full bg-[#F3F0EA] rounded-2xl px-6 py-4 text-[#0f2518] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#84cc16] transition-all"
+                    />
+                </div>
+
+                <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-500 uppercase tracking-wider ml-2">Organization Type</label>
+                    <select className="w-full bg-[#F3F0EA] rounded-2xl px-6 py-4 text-[#0f2518] focus:outline-none focus:ring-2 focus:ring-[#84cc16] transition-all appearance-none cursor-pointer">
+                       <option>Agricultural Enterprise</option>
+                       <option>Government Body</option>
+                       <option>Research Institute</option>
+                       <option>Other</option>
+                    </select>
+                </div>
+
+                <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-500 uppercase tracking-wider ml-2">Message</label>
+                    <textarea 
+                      rows={4}
+                      placeholder="Tell us about your water monitoring needs..." 
+                      className="w-full bg-[#F3F0EA] rounded-2xl px-6 py-4 text-[#0f2518] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#84cc16] transition-all resize-none"
+                    ></textarea>
+                </div>
+
+                <div className="pt-4">
+                  <button className="group w-full bg-[#0f2518] text-white rounded-full py-4 text-sm font-bold uppercase tracking-widest hover:bg-[#84cc16] hover:text-[#0f2518] transition-all duration-300 flex items-center justify-center gap-2">
+                    Send Inquiry 
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* FAQ Section */}
-      <div className="bg-blue-50 dark:bg-gray-800/50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
-              <span>FAQ</span>
+              </form>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Find answers to commonly asked questions about Nadinetra
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow">
-              <div className="flex items-start mb-3">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-3 shrink-0">
-                  <MessageSquare className="h-5 w-5" />
-                </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
-                  What is Nadinetra?
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 pl-12">
-                Nadinetra is an advanced water body monitoring system specifically designed for Delhi's lakes and reservoirs, providing real-time water quality tracking and analytics.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow">
-              <div className="flex items-start mb-3">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-3 shrink-0">
-                  <MessageSquare className="h-5 w-5" />
-                </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
-                  How does the monitoring system work?
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 pl-12">
-                Our system uses a network of IoT sensors deployed in water bodies to continuously measure various parameters like pH, dissolved oxygen, and turbidity, sending data to our cloud platform for analysis.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow">
-              <div className="flex items-start mb-3">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-3 shrink-0">
-                  <MessageSquare className="h-5 w-5" />
-                </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
-                  Can individuals access the platform?
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 pl-12">
-                Yes, we offer different access levels. Community members can view public data and report issues, while researchers and government agencies can access more detailed analytics.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow">
-              <div className="flex items-start mb-3">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mr-3 shrink-0">
-                  <MessageSquare className="h-5 w-5" />
-                </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
-                  How can I report water quality issues?
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 pl-12">
-                You can report issues through our mobile app or web platform. Our community engagement feature allows you to submit reports with photos and descriptions that are verified and addressed by our team.
-              </p>
-            </div>
-          </div>
-          
-          <div className="text-center mt-12">
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Still have questions?
-            </p>
-            <button
-              onClick={() => {
-                const contactForm = document.querySelector('#contactForm');
-                if (contactForm) contactForm.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center mx-auto"
-            >
-              <span>Contact Support</span>
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </div>
 
-      {/* Map Section */}
-      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
-            <span>Location</span>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Find Us
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Visit our office in Delhi's Tech Park
-          </p>
-        </div>
-        
-        <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-          <div className="aspect-video bg-gray-200 dark:bg-gray-700 relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <MapPin className="h-12 w-12 text-blue-600 dark:text-blue-400 opacity-50" />
-              <div className="absolute text-center">
-                <p className="text-gray-600 dark:text-gray-300 font-medium">Map placeholder</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Interactive map would load here</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Droplets className="h-6 w-6 text-blue-400" />
-                <span className="text-lg font-bold text-white">Nadinetra</span>
-              </div>
-              <p className="mb-4">
-                Advanced water body monitoring system for Delhi's lakes and reservoirs.
-              </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white">
-                  <span className="sr-only">Twitter</span>
-                  <div className="w-6 h-6 bg-gray-700 rounded-full"></div>
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  <span className="sr-only">LinkedIn</span>
-                  <div className="w-6 h-6 bg-gray-700 rounded-full"></div>
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  <span className="sr-only">Instagram</span>
-                  <div className="w-6 h-6 bg-gray-700 rounded-full"></div>
-                </a>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Features</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white">Real-time Monitoring</a></li>
-                <li><a href="#" className="hover:text-white">Advanced Analytics</a></li>
-                <li><a href="#" className="hover:text-white">Interactive Mapping</a></li>
-                <li><a href="#" className="hover:text-white">Early Warning System</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white">Documentation</a></li>
-                <li><a href="#" className="hover:text-white">API</a></li>
-                <li><a href="#" className="hover:text-white">Community</a></li>
-                <li><a href="#" className="hover:text-white">Blog</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white">About Us</a></li>
-                <li><a href="#" className="hover:text-white">Careers</a></li>
-                <li><a href="#" className="hover:text-white">Contact</a></li>
-                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p>© 2025 Nadinetra. All rights reserved.</p>
-            <div className="mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white mr-4">Terms</a>
-              <a href="#" className="text-gray-400 hover:text-white mr-4">Privacy</a>
-              <a href="#" className="text-gray-400 hover:text-white">Cookies</a>
-            </div>
-          </div>
         </div>
-      </footer>
+      </main>
+
     </div>
   );
-}
+};
+
+export default ContactPage;

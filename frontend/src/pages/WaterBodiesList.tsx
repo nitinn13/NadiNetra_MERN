@@ -18,7 +18,7 @@ export default function WaterBodiesList() {
           <div
             key={body.id}
             className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => navigate(`/lake/${encodeURIComponent(body.name.toLowerCase())}`)}
+            onClick={() => navigate(`/dashboard/lake/${encodeURIComponent(body.name.toLowerCase())}`)}
           >
             <div className="flex items-start justify-between">
               <div>

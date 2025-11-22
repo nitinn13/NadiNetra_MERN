@@ -5,8 +5,6 @@ const today = new Date();
 
 export const historicalData: HistoricalData[] = Array.from({ length: 30 }, (_, i) => ({
   date: format(subDays(today, 29 - i), 'yyyy-MM-dd'),
-  ph: 7 + Math.random() * 0.5,
-  dissolvedOxygen: 6.5 + Math.random() * 1,
   turbidity: 8 + Math.random() * 4,
   pollutants: 20 + Math.random() * 10,
   biodiversity: 75 + Math.random() * 10

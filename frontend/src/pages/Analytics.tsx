@@ -36,7 +36,7 @@ export default function Analytics() {
       </div>
 
       {/* Live WQI Section */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      {/* <div className="bg-white rounded-lg shadow-md p-6">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Live Water Quality Index</h2>
@@ -46,10 +46,10 @@ export default function Analytics() {
             <Activity className={`h-8 w-8 ${Number(latestWQI) >= 75 ? 'text-green-600' : 'text-yellow-600'}`} />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Historical Data Section */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      {/* <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold text-gray-900 mb-4">Historical Trends</h2>
         <div className="space-x-2 mb-4">
           {metricOptions.map(option => (
@@ -88,7 +88,7 @@ export default function Analytics() {
             </LineChart>
           </ResponsiveContainer>
         </div>
-      </div>
+      </div> */}
 
       {/* Pollution Heatmap */}
       <div className="bg-white rounded-lg shadow-md p-6">
@@ -119,7 +119,7 @@ export default function Analytics() {
       </div>
 
       {/* Predictive Analytics */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      {/* <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold text-gray-900 mb-4">Water Quality Predictions</h2>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -152,7 +152,7 @@ export default function Analytics() {
             </LineChart>
           </ResponsiveContainer>
         </div>
-      </div>
+      </div> */}
 
       {/* Community Reports */}
       <div className="bg-white rounded-lg shadow-md p-6">

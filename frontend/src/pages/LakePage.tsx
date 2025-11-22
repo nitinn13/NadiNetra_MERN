@@ -44,10 +44,8 @@ export default function LakePage() {
       const date = subDays(today, dataPoints - 1 - index);
       return {
         date: format(date, 'yyyy-MM-dd'),
-        ph: 7 + Math.random() * 0.5,
-        oxygen: 6.5 + Math.random() * 1,
+
         turbidity: 8 + Math.random() * 4,
-        tds: 400 + Math.random() * 100,
         tss: 20 + Math.random() * 10,
         chlorophyll: 2.5 + Math.random() * 1.5
       };
@@ -107,10 +105,7 @@ export default function LakePage() {
                 <Tooltip
                   labelFormatter={(date) => format(parseISO(date as string), 'MMM d, yyyy')}
                 />
-                <Line type="monotone" dataKey="ph" stroke="#2563eb" name="pH Level" />
-                <Line type="monotone" dataKey="oxygen" stroke="#16a34a" name="Dissolved Oxygen" />
                 <Line type="monotone" dataKey="turbidity" stroke="#ca8a04" name="Turbidity" />
-                <Line type="monotone" dataKey="tds" stroke="#dc2626" name="TDS" />
                 <Line type="monotone" dataKey="tss" stroke="#7c3aed" name="TSS" />
                 <Line type="monotone" dataKey="chlorophyll" stroke="#059669" name="Chlorophyll" />
               </LineChart>
@@ -122,22 +117,13 @@ export default function LakePage() {
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h3 className="text-lg font-semibold mb-4">Current Readings</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          <div className="p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm text-blue-600">pH Level</p>
-            <p className="text-2xl font-semibold text-blue-900">{lake.quality.ph}</p>
-          </div>
-          <div className="p-4 bg-green-50 rounded-lg">
-            <p className="text-sm text-green-600">Dissolved Oxygen</p>
-            <p className="text-2xl font-semibold text-green-900">{lake.quality.dissolvedOxygen} mg/L</p>
-          </div>
+          
+          
           <div className="p-4 bg-yellow-50 rounded-lg">
             <p className="text-sm text-yellow-600">Turbidity</p>
             <p className="text-2xl font-semibold text-yellow-900">{lake.quality.turbidity} NTU</p>
           </div>
-          <div className="p-4 bg-red-50 rounded-lg">
-            <p className="text-sm text-red-600">TDS</p>
-            <p className="text-2xl font-semibold text-red-900">{lake.quality.tds} mg/L</p>
-          </div>
+          
           <div className="p-4 bg-purple-50 rounded-lg">
             <p className="text-sm text-purple-600">TSS</p>
             <p className="text-2xl font-semibold text-purple-900">{lake.quality.tss} mg/L</p>

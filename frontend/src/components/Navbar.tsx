@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Search, Droplets, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { waterBodies } from '../data/waterBodies';
-import { useAuth } from '../contexts/AuthContext';
-import ThemeToggle from './ThemeToggle';
+// import { useAuth } from '../contexts/AuthContext';
+// import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
 
   const filteredBodies = waterBodies.filter(body =>
     body.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -21,10 +21,10 @@ export default function Navbar() {
     setSearchQuery('');
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate('/auth');
-  };
+  // const handleLogout = () => {
+  //   logout();
+  //   navigate('/');
+  // };
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50 transition-colors duration-200">
@@ -66,7 +66,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <ThemeToggle />
             <div className="text-sm text-gray-600 dark:text-gray-300">
               {user?.firstName} ({user?.role})
@@ -78,7 +78,7 @@ export default function Navbar() {
               <LogOut className="h-4 w-4" />
               Logout
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>
