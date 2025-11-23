@@ -74,7 +74,7 @@ const StatusBadge = ({ status }: { status: string }) => {
 
 // --- Main Component ---
 
-export default function Dashboard() {
+export default function HomePage() {
   const navigate = useNavigate();
   const [lakeData, setLakeData] = useState<LakeData[]>([]);
   const [loading, setLoading] = useState(true);
