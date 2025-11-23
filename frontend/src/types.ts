@@ -3,16 +3,8 @@ export interface WaterBody {
   name: string;
   location: string;
   area: number;
-  depth: number;
-  quality: {
-
-    turbidity: number;
-    tss: number;
-    chlorophyll: number;
-  };
-  waterLevel: number;
   lastUpdated: string;
-  coordinates: [number, number];
+  coordinates: number[][];
 }
 
 export interface WaterQualityStats {
