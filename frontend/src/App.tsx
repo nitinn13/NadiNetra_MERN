@@ -43,10 +43,10 @@ function App() {
                           <Route path="lake/:name" element={<LakePage />} />
                           <Route path="map" element={<MapView />} />
                           <Route path="water-bodies" element={<WaterBodiesList />} />
-                          <Route path="analytics" element={<Analytics />} />
+                          {/* <Route path="analytics" element={<Analytics />} /> */}
                           <Route path="settings" element={<Settings />} />
                           <Route path="help" element={<Help />} />
-                          <Route path="critical-status" element={<CriticalStatus />} />
+                          {/* <Route path="critical-status" element={<CriticalStatus />} /> */}
                         </Routes>
                       </div>
                     </main>

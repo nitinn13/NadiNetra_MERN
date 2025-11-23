@@ -7,7 +7,7 @@ export default function Sidebar() {
 
   const menuItems = [
     { icon: Home, label: 'Dashboard', path: '/dashboard' },
-    { icon: BarChart2, label: 'Analytics', path: '/dashboard/analytics' },
+    // { icon: BarChart2, label: 'Analytics', path: '/dashboard/analytics' },
     { icon: Map, label: 'Map View', path: '/dashboard/map' },
     { icon: Settings, label: 'Settings', path: '/dashboard/settings' },
     { icon: HelpCircle, label: 'Help', path: '/dashboard/help' },
