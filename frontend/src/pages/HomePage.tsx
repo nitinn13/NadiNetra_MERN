@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Droplets, AlertTriangle, Activity, Database } from 'lucide-react';
 import StatsCard from '../components/StatsCard';
